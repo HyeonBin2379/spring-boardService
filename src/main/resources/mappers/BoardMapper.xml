@@ -5,4 +5,24 @@
 
 <mapper namespace="com.ssg.boardservice.mapper.BoardMapper">
 
+    <resultMap id="BoardResultMap" type="com.ssg.boardservice.domain.BoardVO">
+        <id property="bId" column="bId" jdbcType="BIGINT" javaType="long"/>
+        <result property="title" column="title"/>
+        <result property="writer" column="writer"/>
+        <result property="content" column="content"/>
+        <result property="createdDate" column="created_date"/>
+        <result property="updatedDate" column="updated_date"/>
+        <result property="password" column="password"/>
+        <result property="hits" column="hits" jdbcType="BIGINT" javaType="long"/>
+        <result property="file" column="file" jdbcType="BLOB" javaType="byte[]"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BoardResultMap">
+        select * from board;
+    </select>
+
+    <insert id="insert" parameterType="com.ssg.boardservice.domain.BoardVO">
+        insert into board(title, content, writer, password) values(#{title}, #{content}, #{writer}, #{password})
+    </insert>
 </mapper>
