@@ -36,9 +36,57 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public void registerPOST(@Valid BoardDTO boardDTO,
+    public String registerPOST(@Valid BoardDTO boardDTO,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes) {
         log.info("POST board register...");
+
+        if (bindingResult.hasErrors()) {
+            log.error("POST board register has error....");
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/todo/register";
+        }
+
+        log.info(boardDTO);
+        boardService.register(boardDTO);
+        return "redirect:/board/list";
+    }
+
+    @GetMapping({"/read", "/modify"})
+    public void read(Long bId, Model model) {
+        log.info("GET board detail...");
+        BoardDTO boardDTO = boardService.getOne(bId);
+        log.info(boardDTO);
+        model.addAttribute("dto", boardDTO);
+    }
+
+    @PostMapping("/modify")
+    public String modify(@Valid BoardDTO boardDTO,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes) {
+        log.info("board modify...");
+
+        if (bindingResult.hasErrors()) {
+            log.error("board modify has error...");
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            redirectAttributes.addAttribute("bId", boardDTO.getBId());
+            return "redirect:/board/modify";
+        }
+
+        log.info(boardDTO);
+        boardService.edit(boardDTO);
+        return "redirect:/board/list";
+    }
+
+    @PostMapping("/remove")
+    public String remove(Long bId,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+        log.info("board remove....");
+        log.info("bId: {}", bId);
+
+        boardService.remove(bId);
+
+        return "redirect:/board/list";
     }
 }

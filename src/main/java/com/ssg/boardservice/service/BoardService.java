@@ -8,4 +8,7 @@ public interface BoardService {
 
     void register(BoardDTO boardDTO);
     List<BoardDTO> getAll();
+    BoardDTO getOne(Long bId);
+    void edit(BoardDTO boardDTO);
+    void remove(Long bId);
 }

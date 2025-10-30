@@ -24,4 +24,19 @@ public class BoardDAOImpl implements BoardDAO {
     public List<BoardVO> selectAll() {
         return boardMapper.selectAll();
     }
+
+    @Override
+    public BoardVO selectOne(Long bId) {
+        return boardMapper.selectOne(bId);
+    }
+
+    @Override
+    public void update(BoardVO boardVO) {
+        boardMapper.update(boardVO);
+    }
+
+    @Override
+    public void delete(Long bId) {
+        boardMapper.delete(bId);
+    }
 }

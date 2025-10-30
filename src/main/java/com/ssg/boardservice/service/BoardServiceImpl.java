@@ -34,4 +34,21 @@ public class BoardServiceImpl implements BoardService {
                 .sorted(Comparator.comparing(BoardDTO::getBId).reversed())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public BoardDTO getOne(Long bId) {
+        BoardVO boardVO = boardDAO.selectOne(bId);
+        return modelMapper.map(boardVO, BoardDTO.class);
+    }
+
+    @Override
+    public void edit(BoardDTO boardDTO) {
+        BoardVO boardVO = modelMapper.map(boardDTO, BoardVO.class);
+        boardDAO.update(boardVO);
+    }
+
+    @Override
+    public void remove(Long bId) {
+        boardDAO.delete(bId);
+    }
 }

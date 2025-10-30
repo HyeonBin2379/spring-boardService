@@ -19,10 +19,22 @@
     </resultMap>
 
     <select id="selectAll" resultMap="BoardResultMap">
-        select * from board;
+        select title, writer, content, hits, file from board;
+    </select>
+
+    <select id="selectOne" parameterType="long" resultMap="BoardResultMap">
+        select * from board where bId = #{bId}
     </select>
 
     <insert id="insert" parameterType="com.ssg.boardservice.domain.BoardVO">
         insert into board(title, content, writer, password) values(#{title}, #{content}, #{writer}, #{password})
     </insert>
+
+    <update id="update">
+        update board set title = #{title}, writer = #{writer}, content = #{content} where bId = #{bId}
+    </update>
+
+    <delete id="delete">
+        delete from board where bId = #{bId}
+    </delete>
 </mapper>

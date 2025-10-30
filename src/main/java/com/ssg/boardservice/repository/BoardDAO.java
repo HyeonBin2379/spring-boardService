@@ -8,7 +8,7 @@ public interface BoardDAO {
 
     void insert(BoardVO boardVO);
     List<BoardVO> selectAll();
-//    BoardDTO selectOne();
-//    void delete(Long bId);
-//    void update(BoardVO boardVO);
+    BoardVO selectOne(Long bId);
+    void update(BoardVO boardVO);
+    void delete(Long bId);
 }

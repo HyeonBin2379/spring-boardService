@@ -34,4 +34,31 @@ public class MapperTests {
                 .build();
         boardMapper.insert(boardVO);
     }
+
+    @Test
+    public void testSelectOne() {
+        Long bId = 1L;
+        BoardVO boardVO = boardMapper.selectOne(1L);
+        log.info(boardVO);
+    }
+
+    @Test
+    public void testUpdate() {
+        Long bId = (long) boardMapper.selectAll().size();
+        BoardVO boardVO = BoardVO.builder()
+                .bId(bId)
+                .title("게시글 수정 테스트")
+                .content("수정된 게시글 테스트 본문입니다.")
+                .writer("tester")
+                .password("password1234")
+                .userId("user" + bId)
+                .build();
+        boardMapper.update(boardVO);
+    }
+
+    @Test
+    public void testDelete() {
+        Long bId = (long) boardMapper.selectAll().size();
+        boardMapper.delete(bId);
+    }
 }
