@@ -44,7 +44,7 @@ public class BoardController {
         if (bindingResult.hasErrors()) {
             log.error("POST board register has error....");
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-            return "redirect:/todo/register";
+            return "redirect:/board/register";
         }
 
         log.info(boardDTO);

@@ -19,7 +19,7 @@
     </resultMap>
 
     <select id="selectAll" resultMap="BoardResultMap">
-        select title, writer, content, hits, file from board;
+        select * from board
     </select>
 
     <select id="selectOne" parameterType="long" resultMap="BoardResultMap">
