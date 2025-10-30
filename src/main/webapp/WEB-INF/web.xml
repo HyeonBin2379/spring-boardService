@@ -33,12 +33,6 @@
             <param-name>throwExceptionIfNoHandlerFound</param-name>
             <param-value>true</param-value>
         </init-param>
-        
-        <init-param>
-            <param-name>throwExceptionIfHttpServerError</param-name>
-            <param-value>true</param-value>
-        </init-param>
-
         <!--  웹 애플리케이션 구동 시 서블릿 등록 우선순위 지정 -->
         <load-on-startup>1</load-on-startup>
     </servlet>

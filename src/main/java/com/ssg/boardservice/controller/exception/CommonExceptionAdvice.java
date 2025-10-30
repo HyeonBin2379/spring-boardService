@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 // 컨트롤러에 대해 공통으로 처리할 작업을 Advice로 지정
@@ -30,7 +29,7 @@ public class CommonExceptionAdvice {
         return "custom404";
     }
 
-    @ExceptionHandler(value = HttpServerErrorException.class)
+    @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String internalServerError() {
         return "custom500";

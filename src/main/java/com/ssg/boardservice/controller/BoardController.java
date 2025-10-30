@@ -57,7 +57,7 @@ public class BoardController {
         log.info("GET board detail...");
         BoardDTO boardDTO = boardService.getOne(bId);
         log.info(boardDTO);
-        model.addAttribute("dto", boardDTO);
+        model.addAttribute("board", boardDTO);
     }
 
     @PostMapping("/modify")
@@ -80,7 +80,6 @@ public class BoardController {
 
     @PostMapping("/remove")
     public String remove(Long bId,
-                         BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         log.info("board remove....");
         log.info("bId: {}", bId);
