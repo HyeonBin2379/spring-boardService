@@ -18,6 +18,10 @@
         <result property="userId" column="userId"/>
     </resultMap>
 
+    <select id="getCount" resultType="int">
+        select count(bId) from board
+    </select>
+
     <select id="selectAll" resultMap="BoardResultMap">
         select * from board
         order by bId desc

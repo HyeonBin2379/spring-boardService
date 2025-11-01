@@ -40,4 +40,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void delete(Long bId) {
         boardMapper.delete(bId);
     }
+
+    @Override
+    public int getCount(PageRequestDTO pageRequestDTO) {
+        return boardMapper.getCount(pageRequestDTO);
+    }
 }

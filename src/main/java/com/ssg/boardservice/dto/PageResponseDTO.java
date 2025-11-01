@@ -31,13 +31,13 @@ public class PageResponseDTO<E> {
         this.total = total;
         this.dtoList = dtoList;
 
-        // 페이지 번호 리스트의 끝번호: last, end 중 최솟값
-        int last = (int)Math.ceil((double)this.total/this.size);
-        this.end = (int)Math.ceil(this.page/10.0) * 10;
-
         // 페이지 번호리스트 끝 번호, 시작번호 구하기
-        this.end = Math.min(last, this.end);
-        this.start = this.end-1;
+        this.end = (int)Math.ceil(this.page/10.0) * 10;
+        this.start = this.end-9;
+
+        // 전체 페이지의 마지막 번호
+        int last = (int)Math.ceil((double)this.total/this.size);
+        this.end = Math.min(this.end, last);
 
         this.prev = this.start > 1;
         this.next = (this.end * this.size) < total;

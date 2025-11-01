@@ -13,4 +13,5 @@ public interface BoardMapper {
     BoardVO selectOne(Long bId);
     void update(BoardVO boardVO);
     void delete(Long bId);
+    int getCount(PageRequestDTO pageRequestDTO);
 }

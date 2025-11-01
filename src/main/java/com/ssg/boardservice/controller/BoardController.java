@@ -34,8 +34,7 @@ public class BoardController {
             pageRequestDTO = PageRequestDTO.builder().build();
         }
 
-        List<BoardDTO> boardList = boardService.getAll(pageRequestDTO);
-        model.addAttribute("boardList", boardList);
+        model.addAttribute("responseDTO", boardService.getAll(pageRequestDTO));
     }
 
     @GetMapping("/register")

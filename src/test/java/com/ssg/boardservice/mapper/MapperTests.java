@@ -66,4 +66,10 @@ public class MapperTests {
         Long bId = 10L;
         boardMapper.delete(bId);
     }
+
+    @Test
+    public void testGetCount() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+        log.info("전체 데이터 개수:" +  boardMapper.getCount(pageRequestDTO));
+    }
 }

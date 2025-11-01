@@ -2,6 +2,7 @@ package com.ssg.boardservice.service;
 
 import com.ssg.boardservice.dto.BoardDTO;
 import com.ssg.boardservice.dto.PageRequestDTO;
+import com.ssg.boardservice.dto.PageResponseDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +28,7 @@ class BoardServiceTests {
                 .page(1)
                 .size(10)
                 .build();
-        List<BoardDTO> boardDTOList = boardService.getAll(pageRequestDTO);
-        boardDTOList.forEach(log::info);
+        PageResponseDTO<BoardDTO> pageResponseDTO = boardService.getAll(pageRequestDTO);
+        pageResponseDTO.getDtoList().forEach(log::info);
     }
 }
