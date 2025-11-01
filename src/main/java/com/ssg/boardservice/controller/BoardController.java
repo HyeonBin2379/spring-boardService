@@ -60,7 +60,7 @@ public class BoardController {
     }
 
     @GetMapping({"/read", "/modify"})
-    public void read(Long bId, Model model) {
+    public void read(Long bId, PageRequestDTO pageRequestDTO, Model model) {
         log.info("GET board detail...");
         BoardDTO boardDTO = boardService.getOne(bId);
         log.info(boardDTO);
@@ -68,9 +68,10 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modify(@Valid BoardDTO boardDTO,
-                       BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes) {
+    public String modify(PageRequestDTO pageRequestDTO,
+                         @Valid BoardDTO boardDTO,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
         log.info("board modify...");
 
         if (bindingResult.hasErrors()) {
@@ -87,12 +88,13 @@ public class BoardController {
 
     @PostMapping("/remove")
     public String remove(Long bId,
+                         PageRequestDTO pageRequestDTO,
                          RedirectAttributes redirectAttributes) {
         log.info("board remove....");
         log.info("bId: {}", bId);
 
         boardService.remove(bId);
 
-        return "redirect:/board/list";
+        return "redirect:/board/list?" + pageRequestDTO.getLink();
     }
 }

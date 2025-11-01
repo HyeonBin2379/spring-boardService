@@ -54,11 +54,11 @@
     </div>
     <script>
         document.querySelector(".btn-primary").addEventListener("click",function (e) {
-            self.location = "/board/modify?bId="+${board.getBId()}
+            self.location = "/board/modify?bId=${board.getBId()}&${pageRequestDTO.link}"
         },false)
 
         document.querySelector(".btn-secondary").addEventListener("click", function (e) {
-            self.location ="/board/list";
+            self.location ="/board/list?${pageRequestDTO.link}";
         },false)
     </script>
 

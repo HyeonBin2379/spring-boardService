@@ -130,7 +130,7 @@
                             e.preventDefault()
                             e.stopPropagation()
 
-                            self.location= "/board/list"
+                            self.location= "/board/list?${pageRequestDTO.link}"
                         },false);
                     </script>
 

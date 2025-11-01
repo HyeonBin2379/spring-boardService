@@ -31,6 +31,9 @@ public class PageRequestDTO {
     }
 
     public String getLink() {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("page=%d&size=%d", page, size));
+
+        return builder.toString();
     }
 }
