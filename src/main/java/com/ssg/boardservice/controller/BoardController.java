@@ -1,6 +1,7 @@
 package com.ssg.boardservice.controller;
 
 import com.ssg.boardservice.dto.BoardDTO;
+import com.ssg.boardservice.dto.PageRequestDTO;
 import com.ssg.boardservice.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,9 +25,16 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public void list(Model model) {
+    public void list(@Valid PageRequestDTO pageRequestDTO,
+                     BindingResult bindingResult,
+                     Model model) {
         log.info("GET board list...");
-        List<BoardDTO> boardList = boardService.getAll();
+
+        if (bindingResult.hasErrors()) {
+            pageRequestDTO = PageRequestDTO.builder().build();
+        }
+
+        List<BoardDTO> boardList = boardService.getAll(pageRequestDTO);
         model.addAttribute("boardList", boardList);
     }
 

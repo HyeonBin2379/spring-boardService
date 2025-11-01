@@ -1,6 +1,7 @@
 package com.ssg.boardservice.repository;
 
 import com.ssg.boardservice.domain.BoardVO;
+import com.ssg.boardservice.dto.PageRequestDTO;
 import com.ssg.boardservice.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,8 +22,8 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     @Override
-    public List<BoardVO> selectAll() {
-        return boardMapper.selectAll();
+    public List<BoardVO> selectAll(PageRequestDTO pageRequestDTO) {
+        return boardMapper.selectAll(pageRequestDTO);
     }
 
     @Override

@@ -20,6 +20,8 @@
 
     <select id="selectAll" resultMap="BoardResultMap">
         select * from board
+        order by bId desc
+        limit #{skip}, #{size}
     </select>
 
     <select id="selectOne" parameterType="long" resultMap="BoardResultMap">

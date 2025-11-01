@@ -1,6 +1,7 @@
 package com.ssg.boardservice.mapper;
 
 import com.ssg.boardservice.domain.BoardVO;
+import com.ssg.boardservice.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,11 @@ public class MapperTests {
 
     @Test
     public void testSelectAll() {
-        List<BoardVO> boardList = boardMapper.selectAll();
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+        List<BoardVO> boardList = boardMapper.selectAll(pageRequestDTO);
         boardList.forEach(log::info);
     }
 
@@ -44,7 +49,7 @@ public class MapperTests {
 
     @Test
     public void testUpdate() {
-        Long bId = (long) boardMapper.selectAll().size();
+        Long bId = 10L;
         BoardVO boardVO = BoardVO.builder()
                 .bId(bId)
                 .title("게시글 수정 테스트")
@@ -58,7 +63,7 @@ public class MapperTests {
 
     @Test
     public void testDelete() {
-        Long bId = (long) boardMapper.selectAll().size();
+        Long bId = 10L;
         boardMapper.delete(bId);
     }
 }

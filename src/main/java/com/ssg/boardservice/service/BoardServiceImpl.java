@@ -2,6 +2,7 @@ package com.ssg.boardservice.service;
 
 import com.ssg.boardservice.domain.BoardVO;
 import com.ssg.boardservice.dto.BoardDTO;
+import com.ssg.boardservice.dto.PageRequestDTO;
 import com.ssg.boardservice.repository.BoardDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,8 +28,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDTO> getAll() {
-        List<BoardVO> boardList = boardDAO.selectAll();
+    public List<BoardDTO> getAll(PageRequestDTO pageRequestDTO) {
+        List<BoardVO> boardList = boardDAO.selectAll(pageRequestDTO);
         return boardList.stream()
                 .map(boardVO -> modelMapper.map(boardVO, BoardDTO.class))
                 .sorted(Comparator.comparing(BoardDTO::getBId).reversed())

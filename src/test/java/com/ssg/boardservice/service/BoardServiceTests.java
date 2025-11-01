@@ -1,6 +1,7 @@
 package com.ssg.boardservice.service;
 
 import com.ssg.boardservice.dto.BoardDTO;
+import com.ssg.boardservice.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,11 @@ class BoardServiceTests {
 
     @Test
     void testGetAll() {
-        List<BoardDTO> boardDTOList = boardService.getAll();
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+        List<BoardDTO> boardDTOList = boardService.getAll(pageRequestDTO);
         boardDTOList.forEach(log::info);
     }
 }
